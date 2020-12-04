@@ -1,0 +1,10 @@
+{
+    "name": "plugins-vue",
+    "version": "1.0.0",
+    "private": true,
+    "config": {
+      "commitizen": {
+        "path": "cz-conventional-changelog"
+      }
+    }
+}
