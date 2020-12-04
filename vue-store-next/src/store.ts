@@ -44,9 +44,22 @@ export class StoreOberser {
 }
 
 export default class Store extends StoreOberser {
+	public constructor(modules?: any) {
+		super();
+		this.mergeOptions(modules);
+	}
+
     public install(_Vue: any, injectKey: string) {
 		_Vue.provide(injectKey || 'store', this)
         _Vue.config.globalProperties.$store = this
+	}
+
+	public mergeOptions(modules: any): this {
+		if (!modules) return this;
+		Object.keys(modules).forEach((k) => {
+			(this as any)[k] = modules[k];
+		});
+		return this;
 	}
 
 	public getState(father: any, target: any) {
@@ -72,7 +85,7 @@ export default class Store extends StoreOberser {
 	}
 
 	// 添加模块
-	public addMoudles(key: string, module: any): this {
+	public addMoudle(key: string, module: any): this {
 		if (!module) return this;
 		(this as any)[key] = module;
 		this.getState(this, (this as any)[key]);
@@ -81,6 +94,12 @@ export default class Store extends StoreOberser {
 
 	public subscribe(callback: SubFunction) {
 		dep.addSub(callback)
+	}
+	public removeSub(fn: SubFunction) {
+		dep.removeSub(fn);
+	}
+	public destroySub() {
+		dep.destroy();
 	}
 	// public replace(store: any) {}
 }
