@@ -28,6 +28,7 @@
   "license": "MIT",
   "homepage": "https://github.com/Vitaminaq/plugins-vue/tree/master/vue-store-next",
   "bugs": "https://github.com/Vitaminaq/plugins-vue/tree/master/vue-store-next/issues",
+  "typings": "./dist/types.d.ts",
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.12.7",

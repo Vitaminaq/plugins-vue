@@ -9,7 +9,7 @@
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
         "noImplicitAny": false,
-        "sourceMap": true
+        "sourceMap": false
     },
     "include": [
         "src/**/*.ts"

@@ -92,14 +92,17 @@ export default class Store extends StoreOberser {
 		return this;
 	}
 
-	public subscribe(callback: SubFunction) {
+	public subscribe(callback: SubFunction):this {
 		dep.addSub(callback)
+		return this;
 	}
-	public removeSub(fn: SubFunction) {
+	public removeSub(fn: SubFunction):this {
 		dep.removeSub(fn);
+		return this;
 	}
-	public destroySub() {
+	public destroySub():this {
 		dep.destroy();
+		return this;
 	}
 	// public replace(store: any) {}
 }

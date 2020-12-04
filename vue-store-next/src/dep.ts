@@ -12,7 +12,7 @@ export type SubFunction = (options: NotifyOptions) => void;
 export default class Dep {
     private subs: SubFunction[] = []
 
-    public addSub(sub: SubFunction): void {
+    public addSub(sub: SubFunction):void {
         this.subs.push(sub);
     }
 
@@ -23,12 +23,12 @@ export default class Dep {
         }
     }
 
-    public removeSub(fn: SubFunction): void {
+    public removeSub (fn: SubFunction):void {
         const idx = this.subs.indexOf(fn);
         this.subs.splice(idx, 1);
     }
 
-    public destroy(): void {
+    public destroy():void {
         this.subs.splice(0, this.subs.length);
     }
 }
