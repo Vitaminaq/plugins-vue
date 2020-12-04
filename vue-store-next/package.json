@@ -1,5 +1,5 @@
 {
-  "name": "@fly/vue-store-next",
+  "name": "@wefly/vue-store-next",
   "version": "1.0.0",
   "description": "Vue 3.0 state management plug-in,Simple version of vuex",
   "keywords": [
@@ -11,8 +11,11 @@
     "vue-next"
   ],
   "private": false,
-  "main": "dist/vue-lazy-store-common.js",
-  "module": "dist/vue-lazy-store-esm.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/vue-store-next-common.js",
+  "module": "dist/vue-store-next-esm.js",
   "scripts": {
     "build": "rollup --config rollup.config.js"
   },

@@ -1,10 +1,10 @@
 ### 一款适合vue 3.0的状态管理插件，是对之前vue-lazy-store的升级，支持typescript。
 ### Vue 3.0 state management plug-in,Simple version of vuex，support typescript。  
-[![https://img.shields.io/npm/v/@fly/vue-store-next.svg?label=@fly/vue-store-next](https://img.shields.io/npm/v/@fly/vue-store-next.svg?label=@fly/vue-store-next)](https://www.npmjs.com/package/@fly/vue-store-next)  ![总下载量](https://img.shields.io/npm/dt/@fly/vue-store-next)
+[![https://img.shields.io/npm/v/@wefly/vue-store-next.svg?label=@wefly/vue-store-next](https://img.shields.io/npm/v/@wefly/vue-store-next.svg?label=@wefly/vue-store-next)](https://www.npmjs.com/package/@wefly/vue-store-next)  ![总下载量](https://img.shields.io/npm/dt/@wefly/vue-store-next)
 
 #### 安装/Install
 ``` bash
-npm/cnpm install @fly/vue-store-next --save / yarn add @fly/vue-store-next
+npm/cnpm install @wefly/vue-store-next --save / yarn add @wefly/vue-store-next
 ```
 
 #### 使用/Use
@@ -14,7 +14,7 @@ Similar to vuex, it can be switched seamlessly.
 ##### store.ts / js
 ```javascript
 // ts写法
-import Store, { StoreOberser } from "@fly/vue-store-next";
+import Store, { StoreOberser } from "@wefly/vue-store-next";
 
 // 继承StoreOberser 则开启数据监听,监听所有$(= vuex.mutation)开头的方法
 class Test extends StoreOberser {
