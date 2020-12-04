@@ -1,0 +1,42 @@
+{
+  "name": "vue-store-next",
+  "version": "1.0.0",
+  "description": "Vue 3.0 state management plug-in,Simple version of vuex",
+  "keywords": [
+    "vue",
+    "vuex",
+    "store",
+    "state management",
+    "vue 3.0",
+    "vue-next"
+  ],
+  "private": false,
+  "main": "dist/vue-lazy-store-common.js",
+  "module": "dist/vue-lazy-store-esm.js",
+  "scripts": {
+    "build": "rollup --config rollup.config.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "author": "Vitaminaq",
+  "license": "MIT",
+  "homepage": "https://github.com/Vitaminaq/vue-store-next",
+  "bugs": "https://github.com/Vitaminaq/vue-store-next/issues",
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "@rollup/plugin-babel": "^5.2.2",
+    "@rollup/plugin-typescript": "^8.0.0",
+    "rollup": "^2.34.1",
+    "rollup-plugin-clear": "^2.0.7",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "~3.9.3",
+    "vue": "^3.0.0"
+  }
+}
