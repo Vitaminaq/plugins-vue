@@ -1,10 +1,10 @@
 ### 一款适合vue 3.0的状态管理插件，是对之前vue-lazy-store的升级，支持typescript。
 ### Vue 3.0 state management plug-in,Simple version of vuex，support typescript。  
-[![https://img.shields.io/npm/v/vue-store-next.svg?label=vue-store-next](https://img.shields.io/npm/v/vue-store-next.svg?label=vue-store-next)](https://www.npmjs.com/package/vue-store-next)  ![总下载量](https://img.shields.io/npm/dt/vue-store-next)
+[![https://img.shields.io/npm/v/@fly/vue-store-next.svg?label=@fly/vue-store-next](https://img.shields.io/npm/v/@fly/vue-store-next.svg?label=@fly/vue-store-next)](https://www.npmjs.com/package/@fly/vue-store-next)  ![总下载量](https://img.shields.io/npm/dt/@fly/vue-store-next)
 
 #### 安装/Install
 ``` bash
-npm/cnpm install vue-store-next --save / yarn add vue-store-next
+npm/cnpm install @fly/vue-store-next --save / yarn add @fly/vue-store-next
 ```
 
 #### 使用/Use
@@ -14,20 +14,20 @@ Similar to vuex, it can be switched seamlessly.
 ##### store.ts / js
 ```javascript
 // ts写法
-import Store, { StoreOberser } from "vue-store-next";
+import Store, { StoreOberser } from "@fly/vue-store-next";
 
 // 继承StoreOberser 则开启数据监听,监听所有$(= vuex.mutation)开头的方法
 class Test extends StoreOberser {
     public count: number = 0,
     public $add() {
-	this.count++;
+	    this.count++;
     }
 }
 export class BaseStore extends Store {
     public test = new Test();
     public constructor() {
 	super();
-	return this.init(true); // 传入true，dev环境开启数据监听log打印，默认false
+	    return this.init(true); // 传入true，dev环境开启数据监听log打印，默认false
     }
 }
 
@@ -39,7 +39,7 @@ export default BaseStore;
 // 把store的类型挂载到vue.$store上
 declare module '@vue/runtime-core' {
     export interface ComponentCustomProperties {
-	$store: BaseStore;
+	    $store: BaseStore;
     }
 }
 
@@ -47,7 +47,7 @@ declare module '@vue/runtime-core' {
 const text1 = {
     count: 0,
     $add() {
-	this.count++;
+	    this.count++;
     }
 }
 const store = new Store({
@@ -99,12 +99,12 @@ export default defineComponent({
 const text1 = {
     count: 0,
     add() {
-	this.count++;
+	    this.count++;
     }
 }
 setup() {
     if (!store['text1']) {
-	store.addMoudle('text1', text1);
+	    store.addMoudle('text1', text1);
     }
 }
 // 具体请参照demo里，router/base-route-view.ts
