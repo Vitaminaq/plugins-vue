@@ -1,6 +1,6 @@
 {
   "name": "@wefly/vue-rescroll",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vue 3.0 plug-in for instruction management scroll state and rolling location restore",
   "keywords": [
     "vue",
@@ -17,6 +17,7 @@
   "main": "dist/vue-rescroll-next-common.js",
   "module": "dist/vue-rescroll-next-esm.js",
   "unpkg": "dist/vue-rescroll-next-min.js",
+  "typings": "./dist/types.d.ts",
   "files": [
     "dist"
   ],
