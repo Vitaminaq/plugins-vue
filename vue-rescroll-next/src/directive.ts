@@ -86,11 +86,9 @@ export const directive: ObjectDirective = {
 		vnode: VNode,
 		prevVNode: VNode | null
 	) {
-		console.log('updated');
 		return fun(el, binding, vnode, prevVNode);
 	},
 	beforeUnmount(el: DirectiveHTMLElement) {
-		console.log('beforeUnmount');
 		if (!el.restoreScroll || !el.restoreScroll[nowName]) return;
 		el.restoreScroll[nowName].destroy();
 		delete el.restoreScroll;
