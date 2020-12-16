@@ -1,0 +1,1 @@
+declare module '@wefly/vue-image-lazy-load';

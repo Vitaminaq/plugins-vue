@@ -3,6 +3,7 @@ import { terser } from "rollup-plugin-terser";
 import clear from 'rollup-plugin-clear';
 import { getBabelOutputPlugin } from '@rollup/plugin-babel';
 import buble from '@rollup/plugin-buble';
+import createTypes from './script/create-type';
 
 const map = {
   'cjs': 'common',
@@ -23,7 +24,8 @@ const build = (format) => {
     terser(),
     clear({
       targets: [ './dist' ]
-    })
+    }),
+    createTypes()
   ];
   const output = {
     file: `dist/vue-image-lazy-load-${map[format]}.js`,
