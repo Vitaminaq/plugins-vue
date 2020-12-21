@@ -1,6 +1,6 @@
 {
   "name": "@wefly/vue-virtual-scroller",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A virtual rolling component based on Vue 3.0",
   "author": "Vitaminaq",
   "license": "MIT",
