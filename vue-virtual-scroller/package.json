@@ -12,6 +12,9 @@
     "list"
   ],
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/vue-virtual-scroller.common.js",
   "module": "src/index.js",
   "files": [
@@ -23,6 +26,7 @@
   },
   "homepage": "https://github.com/Vitaminaq/vue-pupop-toast",
   "bugs": "https://github.com/Vitaminaq/vue-pupop-toast/issues",
+  "typings": "./dist/types.d.ts",
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^3.0.0"

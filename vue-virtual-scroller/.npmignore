@@ -6,15 +6,13 @@ node_modules
 
 .npmrc
 
-src
-
 test
 
 package-lock.json
 
 .*
 
-rollup.config.js
+vue.config.js
 
 tsconfig.json
 
