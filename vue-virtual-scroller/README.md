@@ -13,14 +13,14 @@ npm/cnpm install @wefly/vue-virtual-scroller --save / yarn add @wefly/vue-virtua
 ``` javascript
 // main.ts/js
 import VueVirtualScroll from '@wefly/vue-virtual-scroller';
-import '@wefly/vue-virtual-scroller/dist/vue-virtual-scroller.css';
+import '@wefly/vue-virtual-scroller/dist/style.css';
 
 Vue.use(VueVirtualScroll);
 
 // 局部注册
 // *.vue
 import { VueVirtualScroller } from '@wefly/vue-virtual-scroller';
-import '@wefly/vue-virtual-scroller/dist/vue-virtual-scroller.css';
+import '@wefly/vue-virtual-scroller/dist/style.css';
 
 // template
 <vue-virtual-scroller
