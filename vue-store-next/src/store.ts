@@ -29,7 +29,7 @@ export class StoreOberser {
 						apply(target, thisArg, args) {
 							StoreOberser.showLog && log(thisArg.path, args);
 							dep.notify({
-								path: thisArg.path,
+								path: `${thisArg.path}.${type}`,
 								params: args,
 								param: args[0]
 							})
