@@ -1,6 +1,6 @@
 {
   "name": "@wefly/vue-virtual-scroller",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "A virtual rolling component based on Vue 3.0",
   "author": "Vitaminaq",
   "license": "MIT",
@@ -17,8 +17,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
+    "build": "vite build"
   },
   "files": [
     "dist"
@@ -28,14 +27,8 @@
       "path": "cz-conventional-changelog"
     }
   },
-  "main": "./dist/my-lib.umd.js",
-  "module": "./dist/my-lib.es.js",
-  "exports": {
-    ".": {
-      "import": "./dist/my-lib.es.js",
-      "require": "./dist/my-lib.umd.js"
-    }
-  },
+  "main": "./dist/vue-virtual-scroller.umd.js",
+  "module": "./dist/vue-virtual-scroller.es.js",
   "homepage": "https://github.com/Vitaminaq/plugins-vue/tree/master/vue-virtual-scroller",
   "bugs": "https://github.com/Vitaminaq/plugins-vue/tree/master/vue-virtual-scroller/issues",
   "typings": "./dist/types.d.ts",

@@ -20,7 +20,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import "./polyfill";
+import polyfill from "./polyfill";
 
 import VueVirtualScrollItem from "./vue-virtual-scroll-item.vue";
 
@@ -162,6 +162,7 @@ export default defineComponent({
     this.virtualTop = virtualTop;
   },
   async mounted() {
+    polyfill();
     window.addEventListener("resize", this.resize.bind(this));
     await this.$nextTick();
     const { offsetHeight, offsetWidth } = this.$el;
