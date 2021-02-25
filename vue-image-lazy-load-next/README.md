@@ -54,3 +54,32 @@ If there is an incoming message during global registration, there is no need to 
 ```html
 <img :src="baseUrl" v-img-lazy-load="{url: ''}" />
 ```
+### ssr
+* 由于服务端渲染需要自定义directive的transform，所以需要配置vite.config文件
+* Because the server-side rendering needs to customize the transformation of directive, it needs to be configured vite.config file
+```javascript
+// vite.config.ts
+import vue from '@vitejs/plugin-vue'
+
+export const ssrTransformCustomDir = () => {
+  return {
+    props: [],
+    needRuntime: true
+  }
+}
+
+export default defineConfig({
+  plugins: [vue(
+    {
+    template: {
+      ssr: true,
+      compilerOptions: {
+        directiveTransforms: {
+          'img-lazy-load': ssrTransformCustomDir
+        }
+      }
+    }
+  }
+  )],
+  });
+```
