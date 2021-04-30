@@ -46,6 +46,35 @@ directives: {
 页面不要使用keep-alive缓存，那样的话，钩子函数不会触发。</br>
 Don't use keep-alive caching for your pages. In that case, the hook function won't trigger</br>
 [详细描述各种现象博客地址](https://blog.csdn.net/theoneEmperor/article/details/82669022)
+### ssr
+* 由于服务端渲染需要自定义directive的transform，所以需要配置vite.config文件
+* Because the server-side rendering needs to customize the transformation of directive, it needs to be configured vite.config file
+```javascript
+// vite.config.ts
+import vue from '@vitejs/plugin-vue'
+
+export const ssrTransformCustomDir = () => {
+  return {
+    props: [],
+    needRuntime: true
+  }
+}
+
+export default defineConfig({
+  plugins: [vue(
+    {
+    template: {
+      ssr: true,
+      compilerOptions: {
+        directiveTransforms: {
+          'rescroll': ssrTransformCustomDir
+        }
+      }
+    }
+  }
+  )],
+  });
+```
 
 ### example
 [demo](https://github.com/Vitaminaq/cfsw-vue-cli3.0/tree/vue-3.0)
