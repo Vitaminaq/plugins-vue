@@ -1,21 +1,7 @@
 import { createApp } from 'vue';
 import Popup from './popup.vue';
 
-// 此写法暂时有bug
-// const vn: VNode = createVNode(Popup, {
-// 	...propsData,
-// 	onClose: function (r: any) {
-// 		resolve(r);
-// 		const el = vn.el as Node;
-// 		if (!document.body.contains(el)) return;
-// 		document.body.removeChild(el);
-// 	},
-// });
-// render(vn, document.body);
-
-// console.log(vn, 'ooooooooooooooooooooooooooooooo');
-
-// document.body.appendChild((vn as any).el);
+const targetId = 'wefly-vue-popup';
 
 export interface ConfirmOptions {
 	message?: string;
@@ -44,6 +30,7 @@ export interface ToastOptions {
 	icon?: 'success' | 'warn' | 'error';
 	message?: string;
 	duration?: number;
+	bgOpacity?: number;
 }
 
 export interface CreateMyPupupButton {
@@ -52,20 +39,27 @@ export interface CreateMyPupupButton {
 	callback?: () => any;
 }
 
-const hasCallback = (propsData: any) => {
+const hasCallback = <R>(propsData: any): Promise<R> => {
 	return new Promise((resolve) => {
+		const isExit = document.getElementById(targetId);
+		if (isExit) return;
 		const vn = createApp(Popup, {
 			...propsData,
 			onClose: function (r: any) {
 				resolve(r);
 				vn.unmount();
+				const oldDom = document.getElementById(targetId);
+				oldDom && document.body.removeChild(oldDom);
 			},
 		});
-		vn.mount('#popup');
+		const dom = document.createElement('div');
+		dom.id = targetId;
+		document.body.appendChild(dom);
+		vn.mount(`#${targetId}`);
 	});
 };
 
-export const confirm = (options: ConfirmOptions = {}): Promise<any> => {
+export const confirm = <R>(options: ConfirmOptions = {}): Promise<R> => {
 	const { buttons } = options;
 	if (!buttons || !buttons.length) {
 		options.buttons = [
@@ -78,7 +72,7 @@ export const confirm = (options: ConfirmOptions = {}): Promise<any> => {
 			},
 		];
 	}
-	return hasCallback({ ...options, type: 'confirm' });
+	return hasCallback<R>({ ...options, type: 'confirm' });
 };
 
 export const alert = (options: AlertOptions = {}): Promise<any> => {
@@ -93,11 +87,15 @@ export const loading = (options: LoadingOptions): Promise<any> => {
 	return hasCallback({ ...options, type: 'loading' });
 };
 
+export interface ToastPropsData extends ToastOptions {
+	type: 'toast';
+}
+
 export const toast = (
 	options: ToastOptions | string,
 	duration?: number
 ): any => {
-	const propsData: any = {
+	const propsData: ToastPropsData = {
 		type: 'toast',
 	};
 	if (typeof options === 'string') {
@@ -107,13 +105,20 @@ export const toast = (
 	} else {
 		Object.assign(propsData, options);
 	}
+	const isExit = document.getElementById(targetId);
+	if (isExit) return;
 	const vn = createApp(Popup, {
 		...propsData,
 		onClose: function () {
 			vn.unmount();
+			const oldDom = document.getElementById(targetId);
+			oldDom && document.body.removeChild(oldDom);
 		},
 	});
-	vn.mount('#popup');
+	const dom = document.createElement('div');
+	dom.id = targetId;
+	document.body.appendChild(dom);
+	vn.mount(`#${targetId}`);
 };
 
 export default {
