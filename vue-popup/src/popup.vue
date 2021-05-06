@@ -1,7 +1,7 @@
 <template>
-	<div class="my-pupop" @touchmove.prevent>
+	<div class="wefly-pupop" @touchmove.prevent>
 		<div
-			class="my-pupop-bg"
+			class="wefly-pupop-bg"
 			:style="{ opacity: show ? bgOpacity : 0 }"
 			@click="!isLoadingOrToast && $emit('close')"
 		></div>
@@ -13,7 +13,7 @@
 		<transition name="popup" appear>
 			<div
 				v-if="(type !== 'toast' || icon) && show"
-				class="my-pupop-content"
+				class="wefly-pupop-content"
 			>
 				<div
 					v-if="isLoadingOrToast"
@@ -21,23 +21,23 @@
 				>
 					<img :src="relIcon" />
 				</div>
-				<div v-if="message" class="my-pupop-message">
+				<div v-if="message" class="wefly-pupop-message">
 					{{ message }}
 				</div>
-				<div class="my-pupop-operate" v-if="buttons.length">
+				<div class="wefly-pupop-operate" v-if="buttons.length">
 					<button
 						v-for="item in buttons"
 						:key="item.text"
-						class="my-pupop-btn"
+						class="wefly-pupop-btn"
 						:style="{ color: item.color }"
 						@click="opetateBtn(item)"
 					>
 						{{ item.text }}
 					</button>
 				</div>
-				<div class="my-pupop-operate" v-if="btnText">
+				<div class="wefly-pupop-operate" v-if="btnText">
 					<button
-						class="my-pupop-btn"
+						class="wefly-pupop-btn"
 						:style="{ color: btnColor }"
 						@click="opetateBtn()"
 					>
@@ -195,8 +195,8 @@ export default {
 };
 </script>
 <style lang="less">
-.my-pupop {
-	.my-pupop-bg {
+.wefly-pupop {
+	.wefly-pupop-bg {
 		position: fixed;
 		top: 0;
 		right: 0;
@@ -270,7 +270,7 @@ export default {
 			transform: translateY(-50%) scale(0);
 		}
 	}
-	.my-pupop-content {
+	.wefly-pupop-content {
 		position: fixed;
 		top: 50%;
 		left: 15%;
@@ -295,18 +295,18 @@ export default {
 			}
 		}
 
-		.my-pupop-message {
+		.wefly-pupop-message {
 			margin-bottom: 20px;
 			font-size: 14px;
 			text-align: center;
 			font-weight: 300;
 		}
-		.my-pupop-operate {
+		.wefly-pupop-operate {
 			display: flex;
 			margin-top: 5px;
 			// prettier-ignore
 			border-top: 1PX solid #dfdfe6;
-			.my-pupop-btn {
+			.wefly-pupop-btn {
 				margin: 0;
 				padding: 12px 0;
 				outline: none;
