@@ -94,6 +94,19 @@ async click() {
 }
 ```
 ![loading](https://raw.githubusercontent.com/Vitaminaq/vue-pupop-toast/master/picture/loading.png)
+##### iframe 参数配置/ params
+| key  | require |  default |  type | discribe |  
+| :--: | :-----: | :----: | :---: | -------- |  
+| url | 是 |        | string | 第三方网页地址 |
+  
+example:  
+``` javascript
+click() {
+  this.$pupop.iframe({
+    url: 'http://xxxx.com'
+  });
+}
+```
 ##### toast 参数配置/ params
 带icon的toast  
 
