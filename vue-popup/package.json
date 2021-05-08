@@ -1,6 +1,6 @@
 {
   "name": "@wefly/vue-popup",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A popup & toast component based on Vue 3.0",
   "author": "Vitaminaq",
   "license": "MIT",

@@ -5,6 +5,7 @@ declare module 'vue/types/vue' {
 			alert: (options: AlertOptions) => any;
 			loading: (options: LoadingOptions) => any;
 			toast: (options: ToastOptions | string, duration?: number) => any;
+			iframe: (options?: IframeOptions) => any;
 		};
 	}
 }
@@ -47,4 +48,8 @@ export interface CreateMyPupupButton {
 	text: string;
 	color?: string;
 	callback?: () => any;
+}
+
+export interface IframeOptions {
+	url: string;
 }

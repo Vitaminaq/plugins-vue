@@ -4,6 +4,7 @@ import createPupop, {
 	AlertOptions,
 	LoadingOptions,
 	ToastOptions,
+	IframeOptions,
 } from './wrap';
 
 const plugin = (_Vue: App, injectKey: string) => {
@@ -20,6 +21,7 @@ declare module '@vue/runtime-core' {
 			alert: (options?: AlertOptions) => any;
 			loading: (options?: LoadingOptions) => any;
 			toast: (options?: ToastOptions | string, duration?: number) => any;
+			iframe: (options?: IframeOptions) => any;
 		};
 	}
 }

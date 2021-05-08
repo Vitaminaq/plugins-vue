@@ -1,9 +1,9 @@
 <template>
-	<div class="wefly-pupop" @touchmove.prevent>
+	<div class="my-pupop" @touchmove.prevent>
 		<div
-			class="wefly-pupop-bg"
+			class="my-pupop-bg"
 			:style="{ opacity: show ? bgOpacity : 0 }"
-			@click="!isLoadingOrToast && $emit('close')"
+			@click="bgClose"
 		></div>
 		<transition name="min-toast" appear>
 			<div v-if="type === 'toast' && !icon && show" class="min-toast">
@@ -12,8 +12,8 @@
 		</transition>
 		<transition name="popup" appear>
 			<div
-				v-if="(type !== 'toast' || icon) && show"
-				class="wefly-pupop-content"
+				v-if="((type !== 'toast' && type !== 'iframe') || icon) && show"
+				class="my-pupop-content"
 			>
 				<div
 					v-if="isLoadingOrToast"
@@ -21,29 +21,34 @@
 				>
 					<img :src="relIcon" />
 				</div>
-				<div v-if="message" class="wefly-pupop-message">
+				<div v-if="message" class="my-pupop-message">
 					{{ message }}
 				</div>
-				<div class="wefly-pupop-operate" v-if="buttons.length">
+				<div class="my-pupop-operate" v-if="buttons.length">
 					<button
 						v-for="item in buttons"
 						:key="item.text"
-						class="wefly-pupop-btn"
+						class="my-pupop-btn"
 						:style="{ color: item.color }"
 						@click="opetateBtn(item)"
 					>
 						{{ item.text }}
 					</button>
 				</div>
-				<div class="wefly-pupop-operate" v-if="btnText">
+				<div class="my-pupop-operate" v-if="btnText">
 					<button
-						class="wefly-pupop-btn"
+						class="my-pupop-btn"
 						:style="{ color: btnColor }"
 						@click="opetateBtn()"
 					>
 						{{ btnText }}
 					</button>
 				</div>
+			</div>
+		</transition>
+		<transition name="popup" appear>
+			<div class="iframe-popup" v-if="type === 'iframe' && show">
+				<iframe class="iframe-contain" :src="url" />
 			</div>
 		</transition>
 	</div>
@@ -82,6 +87,7 @@ export interface PopupOption {
 	duration?: number;
 	icon?: PopupIcon;
 	bgOpacity?: number;
+	url?: string;
 }
 
 interface Data {
@@ -126,6 +132,10 @@ export default {
 		bgOpacity: {
 			type: Number,
 			default: 0.4,
+		},
+		url: {
+			type: String,
+			default: '',
 		},
 	},
 	data(): Data {
@@ -185,6 +195,10 @@ export default {
 			}
 			this.emitParent(r);
 		},
+		bgClose() {
+			if (this.isLoadingOrToast) return;
+			this.emitParent(null);
+		},
 		emitParent(r: any) {
 			this.show = false;
 			setTimeout(() => {
@@ -195,8 +209,8 @@ export default {
 };
 </script>
 <style lang="less">
-.wefly-pupop {
-	.wefly-pupop-bg {
+.my-pupop {
+	.my-pupop-bg {
 		position: fixed;
 		top: 0;
 		right: 0;
@@ -270,7 +284,7 @@ export default {
 			transform: translateY(-50%) scale(0);
 		}
 	}
-	.wefly-pupop-content {
+	.my-pupop-content {
 		position: fixed;
 		top: 50%;
 		left: 15%;
@@ -295,18 +309,18 @@ export default {
 			}
 		}
 
-		.wefly-pupop-message {
+		.my-pupop-message {
 			margin-bottom: 20px;
 			font-size: 14px;
 			text-align: center;
 			font-weight: 300;
 		}
-		.wefly-pupop-operate {
+		.my-pupop-operate {
 			display: flex;
 			margin-top: 5px;
 			// prettier-ignore
 			border-top: 1PX solid #dfdfe6;
-			.wefly-pupop-btn {
+			.my-pupop-btn {
 				margin: 0;
 				padding: 12px 0;
 				outline: none;
@@ -320,6 +334,23 @@ export default {
 					border-right: 1PX solid #dfdfe6;
 				}
 			}
+		}
+	}
+	.iframe-popup {
+		height: 70vh;
+		position: fixed;
+		top: 50%;
+		left: 15%;
+		right: 15%;
+		transform: translateY(-50%);
+		background-color: #fff;
+		z-index: 9999;
+
+		.iframe-contain {
+			border: none;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
 		}
 	}
 	.popup-enter-active {

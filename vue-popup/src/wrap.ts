@@ -33,29 +33,37 @@ export interface ToastOptions {
 	bgOpacity?: number;
 }
 
+export interface IframeOptions {
+	url: string;
+}
+
 export interface CreateMyPupupButton {
 	text: string;
 	color?: string;
 	callback?: () => any;
 }
 
+const create = (propsData: any, resolve?: any) => {
+	const isExit = document.getElementById(targetId);
+	if (isExit) return;
+	const vn = createApp(Popup, {
+		...propsData,
+		onClose: function (r: any) {
+			resolve && resolve(r);
+			vn.unmount();
+			const oldDom = document.getElementById(targetId);
+			oldDom && document.body.removeChild(oldDom);
+		},
+	});
+	const dom = document.createElement('div');
+	dom.id = targetId;
+	document.body.appendChild(dom);
+	vn.mount(`#${targetId}`);
+};
+
 const hasCallback = <R>(propsData: any): Promise<R> => {
 	return new Promise((resolve) => {
-		const isExit = document.getElementById(targetId);
-		if (isExit) return;
-		const vn = createApp(Popup, {
-			...propsData,
-			onClose: function (r: any) {
-				resolve(r);
-				vn.unmount();
-				const oldDom = document.getElementById(targetId);
-				oldDom && document.body.removeChild(oldDom);
-			},
-		});
-		const dom = document.createElement('div');
-		dom.id = targetId;
-		document.body.appendChild(dom);
-		vn.mount(`#${targetId}`);
+		create(propsData, resolve);
 	});
 };
 
@@ -105,20 +113,15 @@ export const toast = (
 	} else {
 		Object.assign(propsData, options);
 	}
-	const isExit = document.getElementById(targetId);
-	if (isExit) return;
-	const vn = createApp(Popup, {
-		...propsData,
-		onClose: function () {
-			vn.unmount();
-			const oldDom = document.getElementById(targetId);
-			oldDom && document.body.removeChild(oldDom);
-		},
-	});
-	const dom = document.createElement('div');
-	dom.id = targetId;
-	document.body.appendChild(dom);
-	vn.mount(`#${targetId}`);
+	create(propsData);
+};
+
+export interface IframePropsData extends IframeOptions {
+	type: 'iframe';
+}
+
+export const iframe = (options: IframeOptions) => {
+	return hasCallback({ ...options, type: 'iframe' });
 };
 
 export default {
@@ -126,4 +129,5 @@ export default {
 	alert,
 	loading,
 	toast,
+	iframe,
 };
