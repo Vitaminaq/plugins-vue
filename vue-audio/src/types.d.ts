@@ -1,1 +1,1 @@
-declare module 'vue-audio';
+declare module '@wefly/vue-audio';

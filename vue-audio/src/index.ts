@@ -1,27 +1,22 @@
-import { App } from 'vue';
-import createPupop, {
-	ConfirmOptions,
-	AlertOptions,
-	LoadingOptions,
-	ToastOptions,
-	IframeOptions,
-} from './wrap';
+import { App } from "vue";
+import VueAudio from "./vue-audios.vue";
 
-const plugin = (_Vue: App, injectKey: string) => {
-	_Vue.provide(injectKey || 'popup', this);
-	_Vue.config.globalProperties.$popup = createPupop;
+export { VueAudio };
+
+const plugin = {
+  install(Vue: App) {
+    Vue.component(`vue-audio`, VueAudio);
+  }
 };
 
 export default plugin;
 
-declare module '@vue/runtime-core' {
-	export interface ComponentCustomProperties {
-		$popup: {
-			confirm: (options?: ConfirmOptions) => any;
-			alert: (options?: AlertOptions) => any;
-			loading: (options?: LoadingOptions) => any;
-			toast: (options?: ToastOptions | string, duration?: number) => any;
-			iframe: (options?: IframeOptions) => any;
-		};
-	}
+if (typeof window !== 'undefined' && window.Vue) {
+  window.Vue.use(plugin);
+}
+
+declare global {
+  interface Window {
+    Vue: App;
+  }
 }
