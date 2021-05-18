@@ -13,7 +13,8 @@ npm/cnpm install @wefly/vue-audio --save / yarn add @wefly/vue-audio
 | :--: | :-----: | :----: | :---: | -------- |  
 | url | 是 |        | string | 音频地址 |
 | duration | 否 | 0 | number | 音频时长 |
-| mode | 否 | none | none,loop,next,next-loop | 播放模式 |
+| mode | 否 | none | none,loop,next,next-loop | 播放模式 |  
+
 none: 普通播放
 loop: 单曲循环
 next: 列表播放
