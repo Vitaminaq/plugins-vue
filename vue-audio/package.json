@@ -1,6 +1,6 @@
 {
   "name": "@wefly/vue-audio",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple and easy to use Audio library that relies on the VUE 3.0 framework. It supports multiple audio switches on the same page, and only one audio player exists at the same time. It supports dragging, clicking and jumping to play anywhere.",
   "author": "Vitaminaq",
   "license": "MIT",
