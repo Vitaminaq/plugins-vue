@@ -30,7 +30,7 @@
   "module": "./dist/vue-audio.es.js",
   "homepage": "https://github.com/Vitaminaq/plugins-vue/tree/master/vue-audio",
   "bugs": "https://github.com/Vitaminaq/plugins-vue/tree/master/vue-audio/issues",
-  "typings": "./dist/types.d.ts",
+  "typings": "./types.d.ts",
   "dependencies": {
     "vue": "^3.0.11"
   },

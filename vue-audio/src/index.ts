@@ -5,7 +5,7 @@ export { VueAudio };
 
 const plugin = {
   install(Vue: App) {
-    Vue.component(`vue-audio`, VueAudio);
+    Vue.component('vue-audio', VueAudio);
   }
 };
 

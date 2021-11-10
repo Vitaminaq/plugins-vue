@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import createTypes from './script/create-type';
 const path = require('path');
 
 export default defineConfig({
@@ -8,12 +7,12 @@ export default defineConfig({
     style: {
       filename: 'vue-audio'
     }
-  }), createTypes()],
+  })],
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'vue-audio',
-      formats: ['es', 'umd']
+      formats: ['cjs' ,'es', 'umd']
     },
     rollupOptions: {
       external: ['vue'],
@@ -21,7 +20,11 @@ export default defineConfig({
         globals: {
           vue: 'Vue'
         },
-        exports: 'named'
+        exports: 'named',
+        assetFileNames: ({ name }) => {
+          console.log(name);
+          return name;
+        }
       }
     }
   }
