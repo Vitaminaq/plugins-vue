@@ -1,2 +1,2 @@
-import Store, { StoreOberser } from './store';
-export { Store as default, StoreOberser }
+import Store, { StoreObserve, useStore } from './store';
+export { Store as default, StoreObserve, useStore };

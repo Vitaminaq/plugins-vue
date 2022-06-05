@@ -6,7 +6,7 @@ export interface NotifyOptions {
 
 export type SubFunction = (options: NotifyOptions) => void;
 
-export class StoreOberser {}
+export class StoreObserve {}
 
 export default class Store {
     install: () => any;
@@ -16,3 +16,5 @@ export default class Store {
     removeSub: (fn: SubFunction) => this;
     destroySub: () => this;
 }
+
+export declare function useStore(): Store;
